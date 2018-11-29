@@ -1,0 +1,43 @@
+Private Declare Function ShellExecute _
+  Lib "shell32.dll" Alias "ShellExecuteA" ( _
+  ByVal hWnd As Long, _
+  ByVal Operation As String, _
+  ByVal Filename As String, _
+  Optional ByVal Parameters As String, _
+  Optional ByVal Directory As String, _
+  Optional ByVal WindowStyle As Long = vbMinimizedFocus _
+  ) As Long
+  
+Public xmlHttpRequest As MSXML2.XMLHTTP
+
+
+Sub LaunchForm()
+FrmNewEscrow.Show
+End Sub
+
+
+Sub Launchescrow()
+If Range("newesceowfrom") = "your account" Then
+
+MsgBox "Please type your account in cell I2"
+Exit Sub
+
+End If
+
+Set c = Range("newesceowfrom")
+ur2 = "https://steemconnect.com/sign/escrow-transfer?from=" & c _
+  & "&to=" & c.Offset(1, 0) _
+  & "&agent=" & c.Offset(2, 0) _
+  & "&escrow_id=" & c.Offset(3, 0) _
+  & "&sbd_amount=" & c.Offset(4, 0) & "%20SBD" _
+  & "&steem_amount=" & c.Offset(5, 0) & "%20STEEM" _
+  & "&fee=" & c.Offset(6, 0) & "%20STEEM&" _
+   & "ratification_deadline=" & Range("newxcratdate") & "T19%3A08%3A45" _
+   & "&escrow_expiration=" & Range("newxpiration") & "T19%3A08%3A48" _
+    & "&json_meta={%22terms%22:%22example%22,%22terms2%22:%22otracosa%22}"
+   
+   'replace(date,"/","-")
+ lSuccess = ShellExecute(0, "Open", ur2)
+
+End Sub
+
