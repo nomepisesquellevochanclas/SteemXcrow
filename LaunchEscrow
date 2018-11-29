@@ -10,12 +10,6 @@ Private Declare Function ShellExecute _
   
 Public xmlHttpRequest As MSXML2.XMLHTTP
 
-
-Sub LaunchForm()
-FrmNewEscrow.Show
-End Sub
-
-
 Sub Launchescrow()
 If Range("newesceowfrom") = "your account" Then
 
@@ -32,12 +26,10 @@ ur2 = "https://steemconnect.com/sign/escrow-transfer?from=" & c _
   & "&sbd_amount=" & c.Offset(4, 0) & "%20SBD" _
   & "&steem_amount=" & c.Offset(5, 0) & "%20STEEM" _
   & "&fee=" & c.Offset(6, 0) & "%20STEEM&" _
-   & "ratification_deadline=" & Range("newxcratdate") & "T19%3A08%3A45" _
-   & "&escrow_expiration=" & Range("newxpiration") & "T19%3A08%3A48" _
-    & "&json_meta={%22terms%22:%22example%22,%22terms2%22:%22otracosa%22}"
-   
-   'replace(date,"/","-")
+  & "ratification_deadline=" & Range("newxcratdate") & "T19%3A08%3A45" _
+  & "&escrow_expiration=" & Range("newxpiration") & "T19%3A08%3A48" _
+  & "&json_meta={%22terms%22:%22example%22,%22terms2%22:%22otracosa%22}"
+
  lSuccess = ShellExecute(0, "Open", ur2)
 
 End Sub
-
